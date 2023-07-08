@@ -9,13 +9,27 @@
 /* Begin PBXBuildFile section */
 		E290DFC92A565B8C00C4B5C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFC82A565B8C00C4B5C9 /* AppDelegate.swift */; };
 		E290DFCB2A565B8C00C4B5C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFCA2A565B8C00C4B5C9 /* SceneDelegate.swift */; };
-		E290DFCD2A565B8C00C4B5C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFCC2A565B8C00C4B5C9 /* ViewController.swift */; };
 		E290DFD02A565B8C00C4B5C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E290DFCE2A565B8C00C4B5C9 /* Main.storyboard */; };
 		E290DFD22A565B8D00C4B5C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E290DFD12A565B8D00C4B5C9 /* Assets.xcassets */; };
 		E290DFD52A565B8D00C4B5C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E290DFD32A565B8D00C4B5C9 /* LaunchScreen.storyboard */; };
 		E290DFE02A565B8D00C4B5C9 /* NineChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFDF2A565B8D00C4B5C9 /* NineChallengeTests.swift */; };
 		E290DFEA2A565B8D00C4B5C9 /* NineChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFE92A565B8D00C4B5C9 /* NineChallengeUITests.swift */; };
 		E290DFEC2A565B8D00C4B5C9 /* NineChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFEB2A565B8D00C4B5C9 /* NineChallengeUITestsLaunchTests.swift */; };
+		E290DFFA2A578D5500C4B5C9 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFF92A578D5500C4B5C9 /* Assets.swift */; };
+		E290DFFB2A578D5500C4B5C9 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFF92A578D5500C4B5C9 /* Assets.swift */; };
+		E290DFFC2A578D5500C4B5C9 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFF92A578D5500C4B5C9 /* Assets.swift */; };
+		E290DFFF2A5791E900C4B5C9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFFE2A5791E900C4B5C9 /* Network.swift */; };
+		E290E0002A5791E900C4B5C9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFFE2A5791E900C4B5C9 /* Network.swift */; };
+		E290E0012A5791E900C4B5C9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290DFFE2A5791E900C4B5C9 /* Network.swift */; };
+		E290E0052A5935DB00C4B5C9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290E0042A5935DB00C4B5C9 /* ListViewController.swift */; };
+		E290E0062A5935DB00C4B5C9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290E0042A5935DB00C4B5C9 /* ListViewController.swift */; };
+		E290E0092A593EB600C4B5C9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E290E0082A593EB600C4B5C9 /* SnapKit */; };
+		E290E00C2A59404D00C4B5C9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E290E00B2A59404D00C4B5C9 /* Kingfisher */; };
+		E290E00E2A59623E00C4B5C9 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290E00D2A59623E00C4B5C9 /* CellView.swift */; };
+		E290E00F2A59623E00C4B5C9 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290E00D2A59623E00C4B5C9 /* CellView.swift */; };
+		E290E0132A596F6F00C4B5C9 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290E0122A596F6F00C4B5C9 /* ViewModels.swift */; };
+		E290E0142A596F6F00C4B5C9 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290E0122A596F6F00C4B5C9 /* ViewModels.swift */; };
+		E290E0172A59819C00C4B5C9 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E290E0162A59819C00C4B5C9 /* ProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +53,6 @@
 		E290DFC52A565B8C00C4B5C9 /* NineChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NineChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E290DFC82A565B8C00C4B5C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E290DFCA2A565B8C00C4B5C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E290DFCC2A565B8C00C4B5C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E290DFCF2A565B8C00C4B5C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E290DFD12A565B8D00C4B5C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E290DFD42A565B8D00C4B5C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +62,12 @@
 		E290DFE52A565B8D00C4B5C9 /* NineChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NineChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E290DFE92A565B8D00C4B5C9 /* NineChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NineChallengeUITests.swift; sourceTree = "<group>"; };
 		E290DFEB2A565B8D00C4B5C9 /* NineChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NineChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E290DFF92A578D5500C4B5C9 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		E290DFFE2A5791E900C4B5C9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		E290E0042A5935DB00C4B5C9 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		E290E00D2A59623E00C4B5C9 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		E290E0102A59641300C4B5C9 /* task_ios.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = task_ios.md; sourceTree = "<group>"; };
+		E290E0122A596F6F00C4B5C9 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +75,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E290E0172A59819C00C4B5C9 /* ProgressHUD in Frameworks */,
+				E290E00C2A59404D00C4B5C9 /* Kingfisher in Frameworks */,
+				E290E0092A593EB600C4B5C9 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +121,17 @@
 		E290DFC72A565B8C00C4B5C9 /* NineChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				E290E0112A596F4B00C4B5C9 /* ViewModel */,
+				E290E0032A59354100C4B5C9 /* View */,
+				E290DFFD2A5791D600C4B5C9 /* Service */,
+				E290DFF82A578BFD00C4B5C9 /* Model */,
 				E290DFC82A565B8C00C4B5C9 /* AppDelegate.swift */,
 				E290DFCA2A565B8C00C4B5C9 /* SceneDelegate.swift */,
-				E290DFCC2A565B8C00C4B5C9 /* ViewController.swift */,
 				E290DFCE2A565B8C00C4B5C9 /* Main.storyboard */,
 				E290DFD12A565B8D00C4B5C9 /* Assets.xcassets */,
 				E290DFD32A565B8D00C4B5C9 /* LaunchScreen.storyboard */,
 				E290DFD62A565B8D00C4B5C9 /* Info.plist */,
+				E290E0102A59641300C4B5C9 /* task_ios.md */,
 			);
 			path = NineChallenge;
 			sourceTree = "<group>";
@@ -127,6 +153,39 @@
 			path = NineChallengeUITests;
 			sourceTree = "<group>";
 		};
+		E290DFF82A578BFD00C4B5C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E290DFF92A578D5500C4B5C9 /* Assets.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E290DFFD2A5791D600C4B5C9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E290DFFE2A5791E900C4B5C9 /* Network.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E290E0032A59354100C4B5C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E290E0042A5935DB00C4B5C9 /* ListViewController.swift */,
+				E290E00D2A59623E00C4B5C9 /* CellView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E290E0112A596F4B00C4B5C9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E290E0122A596F6F00C4B5C9 /* ViewModels.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +202,11 @@
 			dependencies = (
 			);
 			name = NineChallenge;
+			packageProductDependencies = (
+				E290E0082A593EB600C4B5C9 /* SnapKit */,
+				E290E00B2A59404D00C4B5C9 /* Kingfisher */,
+				E290E0162A59819C00C4B5C9 /* ProgressHUD */,
+			);
 			productName = NineChallenge;
 			productReference = E290DFC52A565B8C00C4B5C9 /* NineChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +279,11 @@
 				Base,
 			);
 			mainGroup = E290DFBC2A565B8C00C4B5C9;
+			packageReferences = (
+				E290E0072A593EB600C4B5C9 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E290E00A2A59404D00C4B5C9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E290E0152A59819C00C4B5C9 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+			);
 			productRefGroup = E290DFC62A565B8C00C4B5C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,9 +327,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E290DFCD2A565B8C00C4B5C9 /* ViewController.swift in Sources */,
+				E290DFFF2A5791E900C4B5C9 /* Network.swift in Sources */,
+				E290E0052A5935DB00C4B5C9 /* ListViewController.swift in Sources */,
+				E290E0132A596F6F00C4B5C9 /* ViewModels.swift in Sources */,
 				E290DFC92A565B8C00C4B5C9 /* AppDelegate.swift in Sources */,
+				E290DFFA2A578D5500C4B5C9 /* Assets.swift in Sources */,
 				E290DFCB2A565B8C00C4B5C9 /* SceneDelegate.swift in Sources */,
+				E290E00E2A59623E00C4B5C9 /* CellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +341,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E290DFFB2A578D5500C4B5C9 /* Assets.swift in Sources */,
 				E290DFE02A565B8D00C4B5C9 /* NineChallengeTests.swift in Sources */,
+				E290E0002A5791E900C4B5C9 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +353,11 @@
 			files = (
 				E290DFEC2A565B8D00C4B5C9 /* NineChallengeUITestsLaunchTests.swift in Sources */,
 				E290DFEA2A565B8D00C4B5C9 /* NineChallengeUITests.swift in Sources */,
+				E290E0142A596F6F00C4B5C9 /* ViewModels.swift in Sources */,
+				E290E00F2A59623E00C4B5C9 /* CellView.swift in Sources */,
+				E290E0012A5791E900C4B5C9 /* Network.swift in Sources */,
+				E290E0062A5935DB00C4B5C9 /* ListViewController.swift in Sources */,
+				E290DFFC2A578D5500C4B5C9 /* Assets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +682,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E290E0072A593EB600C4B5C9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		E290E00A2A59404D00C4B5C9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		E290E0152A59819C00C4B5C9 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E290E0082A593EB600C4B5C9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E290E0072A593EB600C4B5C9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		E290E00B2A59404D00C4B5C9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E290E00A2A59404D00C4B5C9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		E290E0162A59819C00C4B5C9 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E290E0152A59819C00C4B5C9 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E290DFBD2A565B8C00C4B5C9 /* Project object */;
 }

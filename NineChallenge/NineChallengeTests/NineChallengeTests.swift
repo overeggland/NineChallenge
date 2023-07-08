@@ -25,6 +25,18 @@ final class NineChallengeTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
+    
+    func testNetwork() async {
+        let expectation = expectation(description: "received data!")
+        do {
+            let data = try await Network.fetchAssetList()
+            print(data)
+            expectation.fulfill()
+        } catch {
+            print("not expected!")
+        }
+        await fulfillment(of: [expectation], timeout: 6, enforceOrder: false)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
