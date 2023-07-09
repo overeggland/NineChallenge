@@ -21,11 +21,13 @@ struct Asset : Decodable {
     let byLine : String?
     let headline : String?
     let theAbstract : String?
+    let lastModified : Int?
 }
 
 struct RelatedImage : Decodable {
     let assetType: String?
     let url: String?
     let timeStamp : Int?
+    let large : String?
 }
 

@@ -11,7 +11,11 @@ import Combine
 final class ListModel {
     private var assetList : AssetList? = nil
     var assets : [Asset] {
-        assetList?.assets ?? []
+        assetList?.assets?.sorted(by: {
+            guard let first = $0.lastModified else { return false }
+            guard let second = $1.lastModified else { return true }
+            return first > second
+        }) ?? []
     }
     
     var displayName : String {

@@ -17,28 +17,25 @@ struct CellView: View {
     }
     
     var body: some View {
-        HStack {
-            VStack (alignment: .leading, spacing: 10.0, content: {
-                if let url = asset?.relatedImages?.first?.url {
-                    KFImage(URL(string: url)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
-                    Text(asset?.headline ?? "")
-                        .font(.headline)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                    Text(asset?.theAbstract ?? "")
-                        .font(.callout)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                    Text(asset?.byLine ?? "")
-                        .font(.footnote)
-                        .italic()
-            })
-            Spacer()
-        }.frame(height: 400)
-         .fixedSize(horizontal: false, vertical: false)
+        VStack (alignment: .leading, spacing: 10.0, content: {
+            if let url = asset?.relatedImages?.first?.url, !url.isEmpty {
+                KFImage(URL(string: url)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+                Text(asset?.headline ?? "")
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                Text(asset?.theAbstract ?? "")
+                    .font(.callout)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                Text(asset?.byLine ?? "")
+                    .font(.footnote)
+                    .italic()
+        }).frame(idealHeight: 400)
+          .fixedSize(horizontal: false, vertical: false)
     }
 }
 
@@ -49,6 +46,7 @@ final class NewsCell : UICollectionViewListCell {
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        print(contentView.subviews)
         let size = self.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height)
         print(size.height,self.contentView)
@@ -58,7 +56,7 @@ final class NewsCell : UICollectionViewListCell {
 
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
-        let item = Asset(assetType: "ARTICLE", url: "www.baidu.com", relatedImages: [], byLine: "Zoe Samios", headline: "Zoe Samios Zoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe Samios", theAbstract: "Zoe Samios Zoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe Samios")
+        let item = Asset(assetType: "ARTICLE", url: "www.baidu.com", relatedImages: [], byLine: "Zoe Samios", headline: "Zoe Samios Zoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe Samios", theAbstract: "Zoe Samios Zoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe Samios", lastModified: 2934709238409)
         CellView(item)
     }
 }
