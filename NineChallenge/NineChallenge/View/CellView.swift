@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SnapKit
+import Kingfisher
 
 struct CellView: View {
     private var asset : Asset?
@@ -17,51 +18,47 @@ struct CellView: View {
     
     var body: some View {
         HStack {
-            VStack (alignment: .leading, spacing: 5.0, content: {
-                Text(asset?.headline ?? "").font(.headline)
-                Text(asset?.theAbstract ?? "").font(.callout)
-                Text(asset?.theAbstract ?? "").font(.footnote)
+            VStack (alignment: .leading, spacing: 10.0, content: {
+                if let url = asset?.relatedImages?.first?.url {
+                    KFImage(URL(string: url)!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
+                    Text(asset?.headline ?? "")
+                        .font(.headline)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(nil)
+                    Text(asset?.theAbstract ?? "")
+                        .font(.callout)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(nil)
+                    Text(asset?.byLine ?? "")
+                        .font(.footnote)
+                        .italic()
             })
             Spacer()
-        }
+        }.frame(height: 400)
+         .fixedSize(horizontal: false, vertical: false)
     }
 }
 
-final class NewsCell : UICollectionViewCell {
-    
-    static let cellIdentifier = "NewsCell"
-    private var customizedView : UIView?
-    private var controller : UIHostingController<CellView>
-    
-    override init(frame: CGRect) {
-        controller = UIHostingController(rootView: CellView(nil))
-        super.init(frame: frame)
-        
-        contentView.addSubview(controller.view)
-        controller.view.snp.makeConstraints { make in
-            make.edges.equalTo(contentView)
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+final class NewsCell : UICollectionViewListCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.customizedView?.removeFromSuperview()
     }
     
-    // Configure the cell's content based on the data it represents
-    func configure(with asset: Asset) {
-        controller.rootView = CellView(asset)
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let size = self.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height)
+        print(size.height,self.contentView)
+        return layoutAttributes
     }
 }
 
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
-        let item = Asset(assetType: "ARTICLE", url: "www.baidu.com", relatedImages: [], byLine: "Zoe Samios", headline: "Zoe Samios", theAbstract: "Zoe Samios")
-        //        Asset(assetType: "ARTICLE", url: "www.baidu.com", relatedImages: [], byLine: "Zoe Samios")
+        let item = Asset(assetType: "ARTICLE", url: "www.baidu.com", relatedImages: [], byLine: "Zoe Samios", headline: "Zoe Samios Zoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe Samios", theAbstract: "Zoe Samios Zoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe SamiosZoe Samios")
         CellView(item)
     }
 }
