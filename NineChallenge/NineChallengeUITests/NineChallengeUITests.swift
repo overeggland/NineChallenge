@@ -35,12 +35,9 @@ final class NineChallengeUITests: XCTestCase {
         }
         sleep(3)
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        print(app.navigationBars.element(boundBy:0).staticTexts)
         let titleLabel = app.navigationBars.staticTexts.firstMatch
         let title = titleLabel.label
         XCTAssertTrue(title.contains("iPad"))
-        
-//        XCTAssertTrue(navigationBars["Settings"].exists)
     }
     
     //Test scroll

@@ -46,23 +46,49 @@ final class ListViewController : UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //background color
         self.view.backgroundColor = .systemGroupedBackground
         // UI
         buildUI()
-        //Data, first time use ProgressHUD, then refreshControl
+        
+        //first time use ProgressHUD, then refreshControl
         ProgressHUD.show("LOADING...", icon: .heart, interaction: false, delay: 2.0)
+        
+        //Data
         dataLoad()
     }
     
     private func buildUI() {
+        
+        configNavigation()
+        
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor(named: "AccentColor")
+        refreshControl.tintColor = themeColor
         self.collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(dataLoad), for: .valueChanged)
         
+        configCollection()
+    }
+    
+    private func configCollection() {
         collectionView.dataSource = viewModel.makeDataSource()
         collectionView.delegate = self
+    }
+    
+    private func configNavigation() {
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: themeColor!]
+        configBarItem()
+    }
+    
+    private func configBarItem () {
+        let rightBarItem = UIBarButtonItem(image: UIImage(systemName: viewModel.currentStyle.imageName ), style: .done, target: self, action: #selector(update))
+        navigationItem.rightBarButtonItem = rightBarItem
+    }
+    
+    @objc private func update() {
+        viewModel.switchStyle()
+        configBarItem()
     }
     
     @objc private func dataLoad() {

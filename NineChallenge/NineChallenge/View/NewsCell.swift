@@ -114,7 +114,6 @@ final class NewsCell : UICollectionViewListCell {
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let size = self.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        print(size)
         layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height)
         return layoutAttributes
     }

@@ -14,41 +14,62 @@ enum Section {
   case main
 }
 
-final class ListModel <CellType: NewsCell> : NSObject {
+enum Style : Bool, RawRepresentable {
+    case concise = true
+    case image = false
+}
+
+extension Style {
+    func toggle() -> Style {
+        self == .concise ? .image : .concise
+    }
+    
+    var imageName : String {
+        switch self {
+        case .concise:
+            return "text.below.photo"
+        case .image:
+            return "square.text.square"
+        }
+    }
+}
+
+final class ListModel<CellType:NewsCell> : NSObject {
     
     // Typealiases for our convenience
-//    typealias Item = Asset
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Asset>
+    typealias Registration = UICollectionView.CellRegistration<CellType, Asset>
     
     private var diffableDataSource : DataSource?
     private weak var collectionView : UICollectionView?
+    var currentStyle = Style.concise
     
     init(assetList: AssetList? = nil, diffableDataSource: DataSource? = nil, _ collectionView: UICollectionView?) {
+        super.init()
         self.assetList = assetList
         self.diffableDataSource = diffableDataSource
         self.collectionView = collectionView
     }
     
     //can't be lazy, cellRegistration should be early initialized
-    private var cellRegistration = {
-//        UICollectionView.CellRegistration<CellType, Asset> { cell, indexPath, asset in
-//            cell.contentConfiguration = UIHostingConfiguration(content: {
-//                CellView(asset)
-//            })
-//            cell.contentView.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
-//        }
-        UICollectionView.CellRegistration<CellType, Asset> { cell, indexPath, asset in
-            cell.config(with: asset)
-//            if var back = cell.backgroundConfiguration {
-//                back.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
-//            }
+    private var cellRegistrationBigImage = {
+        Registration { cell, indexPath, asset in
+            cell.contentConfiguration = UIHostingConfiguration(content: {
+                CellView(asset)
+            })
             cell.contentView.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
         }
-        
+    }()
+    
+    private var cellRegistrationConcice = {
+        Registration { cell, indexPath, asset in
+            cell.config(with: asset)
+            cell.contentView.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
+        }
     }()
     
     private func cellProvider(_ collectionView: UICollectionView, indexPath: IndexPath, item: Asset) -> UICollectionViewCell? {
-        let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item) as CellType
+        let cell = collectionView.dequeueConfiguredReusableCell(using: (currentStyle == .concise ? cellRegistrationConcice : cellRegistrationBigImage), for: indexPath, item: item)
         return cell
     }
     
@@ -59,10 +80,21 @@ final class ListModel <CellType: NewsCell> : NSObject {
     }
     
     func update() {
+        diffableDataSource?.apply(diffableDataSourceSnapshot())
+    }
+    
+    func switchStyle() {
+        var snapshot = diffableDataSourceSnapshot()
+        currentStyle = currentStyle.toggle()
+        snapshot.reloadSections([.main])
+        diffableDataSource?.apply(snapshot)
+    }
+    
+    private func diffableDataSourceSnapshot() -> NSDiffableDataSourceSnapshot<Section, Asset> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Asset>()
         snapshot.appendSections([.main])
         snapshot.appendItems(assets)
-        diffableDataSource?.apply(snapshot)
+        return snapshot
     }
     
     //MARK: Data Assembling

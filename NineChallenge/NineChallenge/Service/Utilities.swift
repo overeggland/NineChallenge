@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 let ScreenWidth = UIScreen.main.bounds.size.width
+let themeColor  = UIColor(named: "AccentColor")
 
 public func convert(timeStamp: Int) -> String {
     let formatter = DateFormatter()
@@ -30,5 +31,12 @@ extension Array<Asset> {
             guard let second = $1.lastModified else { return true }
             return first > second
         })
+    }
+}
+
+//for Bool enum
+extension Bool: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self = value != 0
     }
 }
