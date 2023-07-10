@@ -15,13 +15,11 @@ import Combine
 import Kingfisher
 import WebKit
 
-final class ListViewController : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class ListViewController : UIViewController {
     
     private lazy var collectionView = {
         let collection = UICollectionView(frame: CGRectZero, collectionViewLayout: self.customizedLayout)
         collection.backgroundColor = .systemGroupedBackground
-        collection.dataSource = self
-        collection.delegate = self
         self.view.addSubview(collection)
         collection.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -37,31 +35,35 @@ final class ListViewController : UIViewController, UICollectionViewDataSource, U
         return layout
     }()
     
-    private lazy var viewModel = {
-        ListModel()
+    private lazy var viewModel : ListModel<NewsCell> = {
+        ListModel(collectionView)
     }()
     
     private var future : AnyCancellable? = nil
     
-    private var cellRegistration = {
-        UICollectionView.CellRegistration<NewsCell, Asset> { cell, indexPath, asset in
-            cell.contentConfiguration = UIHostingConfiguration(content: {
-                CellView(asset)
-            })
-            cell.contentView.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
-        }
-    }()
-    
-    private var supplementaryRegistration = {
-        UICollectionView.SupplementaryRegistration<HeaderView>(elementKind: UICollectionView.elementKindSectionHeader) { _, _, _ in }
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //background color
         self.view.backgroundColor = .systemGroupedBackground
-        
+        // UI
+        buildUI()
+        //Data, first time use ProgressHUD, then refreshControl
         ProgressHUD.show("LOADING...", icon: .heart, interaction: false, delay: 2.0)
+        dataLoad()
+    }
+    
+    private func buildUI() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor(named: "AccentColor")
+        self.collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(dataLoad), for: .valueChanged)
+        
+        collectionView.dataSource = viewModel.makeDataSource()
+        collectionView.delegate = viewModel
+    }
+    
+    @objc private func dataLoad() {
+        guard let refreshControl = self.collectionView.refreshControl else { return }
         future = self.viewModel.loadData().receive(on: DispatchQueue.main ).sink {  completion in
             switch completion {
             case .failure(let error):
@@ -69,43 +71,11 @@ final class ListViewController : UIViewController, UICollectionViewDataSource, U
             case .finished:
                 ProgressHUD.dismiss()
             }
+            refreshControl.endRefreshing()
         } receiveValue: { _ in
-            self.collectionView.reloadData()
             self.title = self.viewModel.displayName
+            self.viewModel.update()
         }
     }
-    
-    // Mark: Delegate & DataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.assets.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = self.viewModel.assets[indexPath.item]
-        let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: asset)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-           let view = collectionView.dequeueConfiguredReusableSupplementary(using: supplementaryRegistration, for: indexPath) as HeaderView
-           view.title = self.viewModel.displayName
-           return view
-        }
-        return UICollectionReusableView()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 200, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let asset = self.viewModel.assets[indexPath.item]
-        if let url = asset.url, let aURL = URL(string: url) {
-            let webPage = WebPageController(url: aURL)
-            self.navigationController?.pushViewController(webPage, animated: true)
-        }
-    }
-
 }
 

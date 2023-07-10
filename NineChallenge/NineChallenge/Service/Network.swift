@@ -27,7 +27,6 @@ struct Network {
             let (data, _) = try await session.data(for: request)
             let model = try JSONDecoder().decode(AssetList.self, from: data)
             
-            print(model.assets as Any)
             return model
             
         } catch URLError.cannotLoadFromNetwork {

@@ -23,19 +23,24 @@ struct CellView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
-                Text(asset?.headline ?? "")
-                    .font(.headline)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                Text(asset?.theAbstract ?? "")
-                    .font(.callout)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
+            Text(asset?.headline ?? "")
+                .font(.headline)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
+            Text(asset?.theAbstract ?? "")
+                .font(.callout)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
+            HStack {
                 Text(asset?.byLine ?? "")
                     .font(.footnote)
-                    .italic()
+                    .underline()
+                Spacer(minLength: 10)
+                Text((asset?.modifiedDateString)!)
+                    .font(.footnote)
+            }.italic()
         }).frame(idealHeight: 400)
-          .fixedSize(horizontal: false, vertical: false)
+            .fixedSize(horizontal: false, vertical: false)
     }
 }
 
@@ -46,7 +51,6 @@ final class NewsCell : UICollectionViewListCell {
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        print(contentView.subviews)
         let size = self.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height)
         print(size.height,self.contentView)

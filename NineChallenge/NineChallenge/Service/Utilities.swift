@@ -6,3 +6,26 @@
 //
 
 import Foundation
+
+public func convert(timeStamp: Int) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "HH:mm dd/MM/YYYY"
+    
+    // Convert the timestamp to a Date object
+    let date = Date(timeIntervalSince1970: TimeInterval(timeStamp))
+
+    // Convert the Date object to a formatted string
+    let dateString = formatter.string(from: date)
+    
+    return dateString
+}
+
+extension Array<Asset> {
+    func sortByLastmodified() -> [Asset] {
+        self.sorted(by: {
+            guard let first = $0.lastModified else { return false }
+            guard let second = $1.lastModified else { return true }
+            return first > second
+        })
+    }
+}
