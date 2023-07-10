@@ -27,7 +27,7 @@ Compiled with Xcode 14.3 with a minimum deployment version iOS16 (using UIHostin
 - [x] UITest & UnitTest
 - [x] Mix UIKit & SwiftUI 
 - [x] barItem with SF Symbols
-- [x] two distinguished styles
+- [x] two distinguished cell styles: one for swiftUI, one for UIKit autolayout
 - [x] Pull down to refresh
 - [x] CollectionView
 
