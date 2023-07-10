@@ -37,7 +37,7 @@ Compiled with Xcode 14.3 with a minimum deployment version iOS16 (using UIHostin
 
 ## Test
 - 3 UI Tests for navigation, scrolling and style switching, all primary functions have been unit tested.
-Compatibility Test: Test with iPhone 14 Pro, iPhone SE3 simulators
+Compatibility Test: Test with iPhone 14 Pro, iPhone 12 mini, iPhone SE3 simulators
 
 ## Others
-- By tap navigation right bar button to switch styles
+- By tapping navigation right bar button to switch between styles
