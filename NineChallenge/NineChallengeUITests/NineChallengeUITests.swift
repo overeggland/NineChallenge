@@ -9,6 +9,8 @@ import XCTest
 
 final class NineChallengeUITests: XCTestCase {
 
+    let app = XCUIApplication()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -21,13 +23,41 @@ final class NineChallengeUITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+    
+    // Test navigation
+    func testNavigation() {
+        // 0
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // 1
+        let cells = app.collectionViews.element(boundBy:0).cells
+        if cells.count > 0 {
+           cells.element(boundBy: 0).tap()
+        }
+        sleep(3)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        print(app.navigationBars.element(boundBy:0).staticTexts)
+        let titleLabel = app.navigationBars.staticTexts.firstMatch
+        let title = titleLabel.label
+        XCTAssertTrue(title.contains("iPad"))
+        
+//        XCTAssertTrue(navigationBars["Settings"].exists)
+    }
+    
+    //Test scroll
+    func testScroll() {
+        app.launch()
+        
+        let scrollView = app.collectionViews.element(boundBy: 0)
+        
+        scrollView.swipeUp(velocity: .fast)
+        
+        sleep(2)
+        
+        scrollView.swipeUp()
+        
+        sleep(1)
+        
+        scrollView.swipeDown()
     }
 
     func testLaunchPerformance() throws {
