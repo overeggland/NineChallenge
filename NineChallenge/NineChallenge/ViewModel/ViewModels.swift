@@ -8,12 +8,13 @@
 import Foundation
 import Combine
 import SwiftUI
+import Kingfisher
 
 enum Section {
   case main
 }
 
-final class ListModel <CellType: NewsCell> : NSObject, UICollectionViewDelegate {
+final class ListModel <CellType: NewsCell> : NSObject {
     
     // Typealiases for our convenience
 //    typealias Item = Asset
@@ -30,12 +31,20 @@ final class ListModel <CellType: NewsCell> : NSObject, UICollectionViewDelegate 
     
     //can't be lazy, cellRegistration should be early initialized
     private var cellRegistration = {
+//        UICollectionView.CellRegistration<CellType, Asset> { cell, indexPath, asset in
+//            cell.contentConfiguration = UIHostingConfiguration(content: {
+//                CellView(asset)
+//            })
+//            cell.contentView.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
+//        }
         UICollectionView.CellRegistration<CellType, Asset> { cell, indexPath, asset in
-            cell.contentConfiguration = UIHostingConfiguration(content: {
-                CellView(asset)
-            })
+            cell.config(with: asset)
+//            if var back = cell.backgroundConfiguration {
+//                back.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
+//            }
             cell.contentView.backgroundColor = (indexPath.item % 2 == 0) ? .systemGroupedBackground : .secondarySystemGroupedBackground
         }
+        
     }()
     
     private func cellProvider(_ collectionView: UICollectionView, indexPath: IndexPath, item: Asset) -> UICollectionViewCell? {
@@ -54,14 +63,6 @@ final class ListModel <CellType: NewsCell> : NSObject, UICollectionViewDelegate 
         snapshot.appendSections([.main])
         snapshot.appendItems(assets)
         diffableDataSource?.apply(snapshot)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let asset = self.assets[indexPath.item]
-        if let url = asset.url, let aURL = URL(string: url) {
-//            let webPage = WebPageController(url: aURL)
-//            self.navigationController?.pushViewController(webPage, animated: true)
-        }
     }
     
     //MARK: Data Assembling

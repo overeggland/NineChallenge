@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import UIKit
+
+let ScreenWidth = UIScreen.main.bounds.size.width
 
 public func convert(timeStamp: Int) -> String {
     let formatter = DateFormatter()

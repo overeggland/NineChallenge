@@ -13,9 +13,12 @@ import Dispatch
 import ProgressHUD
 import Combine
 import Kingfisher
-import WebKit
 
-final class ListViewController : UIViewController {
+final class ListViewController : UIViewController, UICollectionViewDelegate {
+    
+    private lazy var router : RouterAction = {
+        Router(navigationController: self.navigationController!)
+    }()
     
     private lazy var collectionView = {
         let collection = UICollectionView(frame: CGRectZero, collectionViewLayout: self.customizedLayout)
@@ -29,7 +32,7 @@ final class ListViewController : UIViewController {
     
     private let customizedLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSizeMake(UIScreen.main.bounds.width, 400)
+        layout.estimatedItemSize = CGSizeMake(ScreenWidth, 100)
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 15
         return layout
@@ -59,7 +62,7 @@ final class ListViewController : UIViewController {
         refreshControl.addTarget(self, action: #selector(dataLoad), for: .valueChanged)
         
         collectionView.dataSource = viewModel.makeDataSource()
-        collectionView.delegate = viewModel
+        collectionView.delegate = self
     }
     
     @objc private func dataLoad() {
@@ -76,6 +79,11 @@ final class ListViewController : UIViewController {
             self.title = self.viewModel.displayName
             self.viewModel.update()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let asset = viewModel.assets[indexPath.item]
+        router.openArticle(with: asset)
     }
 }
 

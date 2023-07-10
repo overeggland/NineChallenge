@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import SnapKit
 import Kingfisher
 
@@ -18,8 +19,8 @@ struct CellView: View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 10.0, content: {
-            if let url = asset?.relatedImages?.first?.url, !url.isEmpty {
-                KFImage(URL(string: url)!)
+            if let url = asset?.imageUrl {
+                KFImage(url)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
@@ -41,20 +42,6 @@ struct CellView: View {
             }.italic()
         }).frame(idealHeight: 400)
             .fixedSize(horizontal: false, vertical: false)
-    }
-}
-
-final class NewsCell : UICollectionViewListCell {
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let size = self.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height)
-        print(size.height,self.contentView)
-        return layoutAttributes
     }
 }
 

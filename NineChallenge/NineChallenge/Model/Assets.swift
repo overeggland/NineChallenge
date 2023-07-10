@@ -24,6 +24,10 @@ struct Asset : Decodable, Hashable, Equatable {
     let theAbstract : String?
     let lastModified : Int?
     
+    var imageUrl : URL? {
+        URL(string: relatedImages?.first?.url ?? "")
+    }
+    
     var modifiedDateString : String {
         guard let last = lastModified else { return "" }
         return convert(timeStamp: last/1000)

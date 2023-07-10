@@ -18,7 +18,6 @@ struct HeaderContent: View {
 final class HeaderView : UICollectionReusableView {
     var title : String {
         set {
-            rootView?.removeFromSuperview()
             let host = UIHostingController(rootView: HeaderContent(title: newValue))
             rootView = host.view
             
@@ -30,6 +29,11 @@ final class HeaderView : UICollectionReusableView {
             host.view.backgroundColor = .systemGroupedBackground
         }
         get { "" }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rootView?.removeFromSuperview()
     }
     
     private weak var rootView : UIView?
