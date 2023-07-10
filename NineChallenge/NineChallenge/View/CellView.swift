@@ -12,6 +12,16 @@ import Kingfisher
 
 struct CellView: View {
     private var asset : Asset?
+    private let compact = ScreenWidth < 400 //SE mini
+    private var abstractFont : Font {
+        compact ? .system(size: 15) : .callout
+    }
+    private var headlineFont : Font {
+        compact ? .system(size: 18, weight: .semibold, design: .monospaced) : .headline
+    }
+    private var bylineFont : Font {
+        compact ? .system(size: 12, weight: .ultraLight, design: .rounded) : .footnote
+    }
     
     init(_ asset: Asset? = nil) {
         self.asset = asset
@@ -25,23 +35,23 @@ struct CellView: View {
                     .aspectRatio(contentMode: .fit)
             }
             Text(asset?.headline ?? "")
-                .font(.headline)
+                .font(headlineFont)
                 .multilineTextAlignment(.leading)
                 .lineLimit(nil)
             Text(asset?.theAbstract ?? "")
-                .font(.callout)
+                .font(abstractFont)
                 .multilineTextAlignment(.leading)
                 .lineLimit(nil)
             HStack {
                 Text(asset?.byLine ?? "")
-                    .font(.footnote)
+                    .font(bylineFont)
                     .underline()
                 Spacer(minLength: 10)
                 Text((asset?.modifiedDateString)!)
-                    .font(.footnote)
+                    .font(bylineFont)
             }.italic()
         }).frame(idealHeight: 400)
-            .fixedSize(horizontal: false, vertical: false)
+          .fixedSize(horizontal: false, vertical: false)
     }
 }
 

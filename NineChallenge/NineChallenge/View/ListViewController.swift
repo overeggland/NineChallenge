@@ -32,7 +32,7 @@ final class ListViewController : UIViewController, UICollectionViewDelegate {
     
     private let customizedLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSizeMake(ScreenWidth, 100)
+        layout.estimatedItemSize = CGSizeMake(ScreenWidth, 150)
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 15
         return layout
@@ -60,15 +60,16 @@ final class ListViewController : UIViewController, UICollectionViewDelegate {
     }
     
     private func buildUI() {
-        
         configNavigation()
-        
+        configCollection()
+        configRefreshControl()
+    }
+    
+    private func configRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = themeColor
         self.collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(dataLoad), for: .valueChanged)
-        
-        configCollection()
     }
     
     private func configCollection() {
@@ -82,15 +83,16 @@ final class ListViewController : UIViewController, UICollectionViewDelegate {
     }
     
     private func configBarItem () {
-        let rightBarItem = UIBarButtonItem(image: UIImage(systemName: viewModel.currentStyle.imageName ), style: .done, target: self, action: #selector(update))
+        let rightBarItem = UIBarButtonItem(image: UIImage(systemName: viewModel.currentStyle.imageName ), style: .done, target: self, action: #selector(switchStyle))
         navigationItem.rightBarButtonItem = rightBarItem
     }
     
-    @objc private func update() {
+    @objc private func switchStyle() {
         viewModel.switchStyle()
         configBarItem()
     }
     
+    //MARK : Data load
     @objc private func dataLoad() {
         guard let refreshControl = self.collectionView.refreshControl else { return }
         future = self.viewModel.loadData().receive(on: DispatchQueue.main ).sink {  completion in

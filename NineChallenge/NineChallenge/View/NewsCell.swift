@@ -24,12 +24,13 @@ final class NewsCell : UICollectionViewListCell {
         headline.text = asset.headline
         thumbnail.kf.setImage(with: asset.imageUrl)
         abstract.text = asset.theAbstract
+        abstract.sizeToFit()
         byLine.text = asset.byLine
         dateLine.text = asset.modifiedDateString
         
         //Height estimate
         let height = abstract.sizeThatFits(CGSizeMake(ScreenWidth, 200)).height
-        abstract.snp.makeConstraints { make in
+        abstract.snp.updateConstraints { make in
             make.height.greaterThanOrEqualTo(height)
         }
     }
@@ -68,9 +69,10 @@ final class NewsCell : UICollectionViewListCell {
         label.numberOfLines = 0
         contentView.addSubview(label)
         label.snp.makeConstraints { make in
-            make.top.equalTo(headline.snp.bottom).offset(5.0)
+            make.top.equalTo(headline.snp.bottom)
             make.left.equalTo(thumbnail)
             make.right.equalTo(headline)
+            make.height.greaterThanOrEqualTo(20)
         }
         return label
     }()
@@ -83,9 +85,9 @@ final class NewsCell : UICollectionViewListCell {
         contentView.addSubview(label)
         label.snp.makeConstraints { make in
             make.right.equalTo(headline)
-            make.top.equalTo(abstract.snp.bottom).offset(10.0)
-            make.bottom.equalTo(contentView).offset(-15.0)
             make.height.equalTo(30.0)
+            make.top.equalTo(abstract.snp.bottom).offset(5.0)
+            make.bottom.equalTo(contentView).offset(-15.0)
             make.width.equalTo(contentView).multipliedBy(0.6)
         }
         return label
@@ -114,7 +116,7 @@ final class NewsCell : UICollectionViewListCell {
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let size = self.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height)
+        layoutAttributes.frame = CGRectMake(0, 0, layoutAttributes.frame.width, size.height + 15)
         return layoutAttributes
     }
 }
