@@ -33,10 +33,3 @@ extension Array<Asset> {
         })
     }
 }
-
-//for Bool enum
-extension Bool: ExpressibleByIntegerLiteral {
-    public init(integerLiteral value: Int) {
-        self = value != 0
-    }
-}

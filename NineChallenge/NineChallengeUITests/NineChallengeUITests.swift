@@ -56,6 +56,22 @@ final class NineChallengeUITests: XCTestCase {
         
         scrollView.swipeDown()
     }
+    
+    //Test style switch
+    func testStyleSwitch() {
+        app.launch()
+        
+        //if list has been displayed
+        var cells = app.collectionViews.element(boundBy:0).cells
+        if cells.count > 0 {
+            app.navigationBars.buttons.element(boundBy: 0).tap()
+        }
+        sleep(3)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        
+        cells = app.collectionViews.element(boundBy:0).cells
+        XCTAssertTrue(cells.count > 0)
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {

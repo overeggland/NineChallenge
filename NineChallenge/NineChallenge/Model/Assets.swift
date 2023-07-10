@@ -35,8 +35,10 @@ struct Asset : Decodable, Hashable, Equatable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(url)
+        hasher.combine(headline)
     }
     
+    //for hashable
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.url == rhs.url && lhs.headline == rhs.headline
     }

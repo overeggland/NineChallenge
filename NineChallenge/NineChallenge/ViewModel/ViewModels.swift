@@ -14,23 +14,14 @@ enum Section {
   case main
 }
 
-enum Style : Bool, RawRepresentable {
-    case concise = true
-    case image = false
+enum Style : String {
+    case concise = "text.below.photo"
+    case gallary = "square.text.square"
 }
 
 extension Style {
     func toggle() -> Style {
-        self == .concise ? .image : .concise
-    }
-    
-    var imageName : String {
-        switch self {
-        case .concise:
-            return "text.below.photo"
-        case .image:
-            return "square.text.square"
-        }
+        self == .concise ? .gallary : .concise
     }
 }
 

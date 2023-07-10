@@ -83,7 +83,7 @@ final class ListViewController : UIViewController, UICollectionViewDelegate {
     }
     
     private func configBarItem () {
-        let rightBarItem = UIBarButtonItem(image: UIImage(systemName: viewModel.currentStyle.imageName ), style: .done, target: self, action: #selector(switchStyle))
+        let rightBarItem = UIBarButtonItem(image: UIImage(systemName: viewModel.currentStyle.rawValue ), style: .done, target: self, action: #selector(switchStyle))
         navigationItem.rightBarButtonItem = rightBarItem
     }
     
