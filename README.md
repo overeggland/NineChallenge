@@ -1,6 +1,5 @@
 # NineChallenge
 
-NineChallenge Project
 Nine Code Challenge Note
 
 ## ScreenShots
@@ -34,7 +33,7 @@ Compiled with Xcode 14.3 with a minimum deployment version iOS16 (using UIHostin
 
 ## Modules
 - Model, ViewModel, View, Service
-
+- HeaderView is deprecated
 
 ## Test
 - 3 UI Tests for navigation, scrolling and style switching, all primary functions have been unit tested.
