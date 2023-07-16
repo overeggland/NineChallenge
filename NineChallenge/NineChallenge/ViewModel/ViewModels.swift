@@ -25,7 +25,7 @@ extension Style {
     }
 }
 
-final class ListModel<CellType:NewsCell> : NSObject {
+final class ListModel<CellType:NewsCell> {
     
     // Typealiases for our convenience
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Asset>
@@ -36,7 +36,6 @@ final class ListModel<CellType:NewsCell> : NSObject {
     var currentStyle = Style.concise
     
     init(assetList: AssetList? = nil, diffableDataSource: DataSource? = nil, _ collectionView: UICollectionView?) {
-        super.init()
         self.assetList = assetList
         self.diffableDataSource = diffableDataSource
         self.collectionView = collectionView
