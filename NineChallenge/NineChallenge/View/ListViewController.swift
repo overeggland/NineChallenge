@@ -95,17 +95,17 @@ final class ListViewController : UIViewController, UICollectionViewDelegate {
     //MARK : Data load
     @objc private func dataLoad() {
         guard let refreshControl = self.collectionView.refreshControl else { return }
-        future = self.viewModel.loadData().receive(on: DispatchQueue.main ).sink {  completion in
+        future = self.viewModel.loadData().receive(on: DispatchQueue.main ).sink { [weak self] completion in
             switch completion {
             case .failure(let error):
                 ProgressHUD.showError(error.localizedDescription)
             case .finished:
                 ProgressHUD.dismiss()
             }
-            refreshControl.endRefreshing()
-        } receiveValue: { _ in
-            self.title = self.viewModel.displayName
-            self.viewModel.update()
+            self?.collectionView.refreshControl?.endRefreshing()
+        } receiveValue: { [weak self] _ in
+            self?.title = self?.viewModel.displayName
+            self?.viewModel.update()
         }
     }
     
